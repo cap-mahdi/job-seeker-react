@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-weight: normal;
+}
+
+.options {
+  width: 70%;
+}

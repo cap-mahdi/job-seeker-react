@@ -1,0 +1,16 @@
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  gap: 50px;
+}
+.feature img {
+  width: 250px;
+  height: 250px;
+}
+
+.feature h3 span {
+  display: block;
+}

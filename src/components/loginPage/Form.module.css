@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 60%;
+  width: 50%;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background-color: #e3e3e3;
+  color: black;
+}
+
+.container button {
+  width: 30%;
+  height: 10%;
+  border-radius: 10px;
+  background-color: #e3e3e3;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: bold;
+}

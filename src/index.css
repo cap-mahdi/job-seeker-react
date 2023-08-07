@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Mono", "Montserrat";
+}
+body {
+  background: #233142;
+  color: #fff;
+}
+input,
+select {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  text-align: center;
+  padding: 5px 10px;
+  width: 200px;
+  height: 50px;
+}
+input:focus,
+select:focus {
+  outline: none;
+}

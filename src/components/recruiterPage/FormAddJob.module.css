@@ -1,0 +1,55 @@
+.container {
+  background-color: rgb(54, 57, 61);
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  gap: 15px;
+}
+
+.form {
+  border: 3px solid rgb(2, 238, 140);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 90%;
+  margin-top: 10px;
+  margin: auto;
+}
+
+.group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  gap: 15px;
+}
+
+.group input {
+  width: 50%;
+}
+
+.skills label {
+  flex: 0.5;
+}
+
+.autocomplete {
+  background-color: white;
+}
+.button {
+  background-color: rgb(2, 238, 140);
+  padding: 1rem;
+  border-radius: 50px;
+  align-self: flex-end;
+  border: 3px solid white;
+  cursor: pointer;
+  margin: auto;
+  display: block;
+  margin-top: 15px;
+  margin-right: 30px;
+}

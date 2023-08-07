@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: "arial";
+}
+
+.container *:first-child {
+  flex: 2;
+}
+.container > *:last-child {
+  flex: 3;
+}

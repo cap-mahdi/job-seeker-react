@@ -1,0 +1,510 @@
+{
+  "users": [
+    {
+      "id": 654321,
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "John@gmail.com",
+      "password": "John",
+      "location": "New York",
+      "age": 23,
+      "skills": [
+        "Java",
+        "C++"
+      ],
+      "image": "john.jpg"
+    },
+    {
+      "id": 123456,
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "email": "Jane@gmail.com",
+      "password": "Jane",
+      "location": "Los Angeles",
+      "age": 24,
+      "skills": [
+        "Python",
+        "C++"
+      ],
+      "image": "jane.jpg"
+    },
+    {
+      "id": 6546321,
+      "first_name": "Mahdi",
+      "last_name": "Chaabane",
+      "email": "mahdi@gmail.com",
+      "password": "mahdi",
+      "location": "Tunis",
+      "age": 21,
+      "skills": [
+        "React",
+        "Typescript",
+        "C++"
+      ],
+      "image": "mahdi.jpg"
+    },
+    {
+      "id": 987654,
+      "first_name": "Emily",
+      "last_name": "Smith",
+      "email": "emily@gmail.com",
+      "password": "emily123",
+      "location": "London",
+      "age": 27,
+      "skills": [
+        "JavaScript",
+        "Node.js"
+      ],
+      "image": "emily.jpg"
+    },
+    {
+      "id": 543219,
+      "first_name": "Michael",
+      "last_name": "Johnson",
+      "email": "michael@gmail.com",
+      "password": "michael",
+      "location": "Chicago",
+      "age": 30,
+      "skills": [
+        "PHP",
+        "MySQL"
+      ],
+      "image": "michael.jpg"
+    },
+    {
+      "id": 789012,
+      "first_name": "Sophia",
+      "last_name": "Lee",
+      "email": "sophia@gmail.com",
+      "password": "sophia123",
+      "location": "Sydney",
+      "age": 26,
+      "skills": [
+        "Swift",
+        "iOS Development"
+      ],
+      "image": "sophia.jpg"
+    },
+    {
+      "id": 345678,
+      "first_name": "Alex",
+      "last_name": "Nguyen",
+      "email": "alex@gmail.com",
+      "password": "alex123",
+      "location": "Hanoi",
+      "age": 29,
+      "skills": [
+        "Ruby",
+        "Ruby on Rails"
+      ],
+      "image": "alex.jpg"
+    },
+    {
+      "id": 876543,
+      "first_name": "Maria",
+      "last_name": "Garcia",
+      "email": "maria@gmail.com",
+      "password": "maria",
+      "location": "Madrid",
+      "age": 25,
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "image": "maria.jpg"
+    },
+    {
+      "id": 234567,
+      "first_name": "William",
+      "last_name": "Brown",
+      "email": "william@gmail.com",
+      "password": "william123",
+      "location": "Toronto",
+      "age": 28,
+      "skills": [
+        "Angular",
+        "Java"
+      ],
+      "image": "william.jpg"
+    },
+    {
+      "id": 901234,
+      "first_name": "Olivia",
+      "last_name": "Martinez",
+      "email": "olivia@gmail.com",
+      "password": "olivia",
+      "location": "Barcelona",
+      "age": 22,
+      "skills": [
+        "Vue.js",
+        "PHP",
+        "MySQL"
+      ],
+      "image": "olivia.jpg"
+    }
+  ],
+  "jobAds": [
+    {
+      "id": 9874354,
+      "title": "Frontend Developer",
+      "description": "We are looking for a Front-End Web Developer who is motivated to combine the art of design with the art of programming. Responsibilities will include translation of the UI/UX design wireframes to actual code that will produce visual elements of the application.",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Communication skills"
+      ],
+      "salary": {
+        "min": 1000,
+        "max": 2000
+      },
+      "job-type": "full-time",
+      "mobility": "remote",
+      "location": {
+        "lng": 2.5196632738706626,
+        "lat": 48.611123129502836
+      },
+      "country": "France",
+      "company": "Google"
+    },
+    {
+      "id": 9874355,
+      "title": "Backend Developer",
+      "description": "We are looking for a Back-End Web Developer responsible for managing the interchange of data between the server and the users. Your primary focus will be development of all server-side logic, definition and maintenance of the central database, and ensuring high performance and responsiveness to requests from the front-end.",
+      "skills": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Communication skills"
+      ],
+      "salary": {
+        "min": 1500,
+        "max": 2200
+      },
+      "job-type": "part-time",
+      "mobility": "on-site",
+      "location": {
+        "lng": -1.6331687573793374,
+        "lat": 47.09256679765292
+      },
+      "country": "France",
+      "company": "Facebook"
+    },
+    {
+      "id": 9874356,
+      "title": "Fullstack Developer",
+      "description": "We are looking for a Full Stack Developer to produce scalable software solutions. You’ll be part of a cross-functional team that’s responsible for the full software development life cycle, from conception to deployment.",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Communication skills"
+      ],
+      "salary": {
+        "min": 3000,
+        "max": 3500
+      },
+      "job-type": "internship",
+      "mobility": "hybrid",
+      "location": {
+        "lng": 2.3882160169537414,
+        "lat": 48.07466502550604
+      },
+      "country": "France",
+      "company": "Amazon"
+    },
+    {
+      "id": 9874357,
+      "title": "Mobile Developer",
+      "description": "We are looking for a qualified Mobile developer to join our Engineering team. You will be working with our engineers to develop and maintain high quality mobile applications.",
+      "skills": [
+        "Swift",
+        "iOS Development",
+        "Communication skills"
+      ],
+      "salary": {
+        "min": 1000,
+        "max": 2000
+      },
+      "job-type": "full-time",
+      "mobility": "remote",
+      "location": {
+        "lng": 7.500344780397685,
+        "lat": 51.42824171100129
+      },
+      "country": "Germany",
+      "company": "Apple"
+    },
+    {
+      "id": 9874358,
+      "title": "Data Scientist",
+      "description": "We are seeking a Data Scientist to analyze large-scale data sets and develop custom models to solve complex business problems. The ideal candidate will have a strong background in statistics, machine learning, and data analysis.",
+      "skills": [
+        "Python",
+        "R",
+        "Machine Learning",
+        "Data Analysis"
+      ],
+      "salary": {
+        "min": 2500,
+        "max": 4000
+      },
+      "job-type": "full-time",
+      "mobility": "on-site",
+      "location": {
+        "lng": 10.76308905318871,
+        "lat": 34.82281473439632
+      },
+      "country": "Tunisia",
+      "company": "Microsoft"
+    },
+    {
+      "id": 9874359,
+      "title": "UX/UI Designer",
+      "description": "We are looking for a talented and creative UX/UI Designer to join our design team. The ideal candidate should have a strong understanding of user-centered design principles and be proficient in tools like Sketch and Adobe Creative Suite.",
+      "skills": [
+        "User Experience",
+        "User Interface",
+        "Sketch",
+        "Adobe Creative Suite"
+      ],
+      "salary": {
+        "min": 1800,
+        "max": 2500
+      },
+      "job-type": "full-time",
+      "mobility": "hybrid",
+      "location": {
+        "lng": 7.961770561647685,
+        "lat": 52.24958078352512
+      },
+      "country": "Germany",
+      "company": "IBM"
+    },
+    {
+      "id": 9874360,
+      "title": "DevOps Engineer",
+      "description": "We are seeking a skilled DevOps Engineer to join our team. You will be responsible for automating and streamlining our development and operational processes to deliver efficient and secure software solutions.",
+      "skills": [
+        "Linux",
+        "Docker",
+        "Kubernetes",
+        "CI/CD"
+      ],
+      "salary": {
+        "min": 2800,
+        "max": 3500
+      },
+      "job-type": "full-time",
+      "mobility": "remote",
+      "location": {
+        "lng": 6.852151421022685,
+        "lat": 50.96007055526448
+      },
+      "country": "Germany",
+      "company": "Tesla"
+    },
+    {
+      "id": 9874361,
+      "title": "Graphic Designer",
+      "description": "We are looking for a creative Graphic Designer to join our marketing team. You will be responsible for creating visually appealing graphics for various marketing materials and campaigns.",
+      "skills": [
+        "Adobe Illustrator",
+        "Adobe Photoshop",
+        "Creativity",
+        "Communication skills"
+      ],
+      "salary": {
+        "min": 1500,
+        "max": 2200
+      },
+      "job-type": "part-time",
+      "mobility": "on-site",
+      "location": {
+        "lng": 9.76308905318871,
+        "lat": 34.82281473439632
+      },
+      "country": "Tunisia",
+      "company": "Adobe"
+    },
+    {
+      "id": 9874362,
+      "title": "Product Manager",
+      "description": "We are seeking an experienced Product Manager to lead our product development efforts. You will be responsible for defining product strategy, conducting market research, and collaborating with cross-functional teams to bring products to market.",
+      "skills": [
+        "Product Strategy",
+        "Market Research",
+        "Project Management",
+        "Communication skills"
+      ],
+      "salary": {
+        "min": 3000,
+        "max": 4000
+      },
+      "job-type": "full-time",
+      "mobility": "hybrid",
+      "location": {
+        "lng": 10.19179999068871,
+        "lat": 36.765284117326495
+      },
+      "country": "Tunisia",
+      "company": "Sony"
+    },
+    {
+      "id": 9874363,
+      "title": "Data Engineer",
+      "description": "We are looking for a Data Engineer to design, implement, and maintain data pipelines and data warehouses. You will work closely with data scientists and analysts to ensure data is accessible and available for analysis.",
+      "skills": [
+        "SQL",
+        "Python",
+        "ETL",
+        "Big Data"
+      ],
+      "salary": {
+        "min": 2500,
+        "max": 3500
+      },
+      "job-type": "internship",
+      "mobility": "on-site",
+      "location": {
+        "lng": 10.57632147506371,
+        "lat": 35.83562049555766
+      },
+      "country": "Tunisia",
+      "company": "Netflix"
+    },
+    {
+      "id": 9874364,
+      "title": "Cybersecurity Analyst",
+      "description": "We are seeking a Cybersecurity Analyst to protect our organization's computer systems and networks from security breaches and cyber-attacks. The ideal candidate should have a strong understanding of network protocols and cybersecurity best practices.",
+      "skills": [
+        "Network Security",
+        "Incident Response",
+        "Security Auditing",
+        "Communication skills"
+      ],
+      "salary": {
+        "min": 2000,
+        "max": 3000
+      },
+      "job-type": "full-time",
+      "mobility": "remote",
+      "location": {
+        "lng": 10.65322577193871,
+        "lat": 36.52728699061691
+      },
+      "country": "Tunisia",
+      "company": "Cisco"
+    },
+    {
+      "id": 1691317687785,
+      "title": "ML ",
+      "description": "job descritpion",
+      "skills": [
+        "Python",
+        "React",
+        "Angular"
+      ],
+      "salary": {
+        "min": 1450,
+        "max": 2250
+      },
+      "job-type": "internship",
+      "mobility": "remote",
+      "location": {
+        "lat": 36.795074104599756,
+        "lng": 10.199114748263803
+      },
+      "company": "Google",
+      "country": "Tunisia"
+    },
+    {
+      "id": 1691318896562,
+      "title": "front-end developer",
+      "description": "Job description",
+      "skills": [
+        "CSS",
+        "HTML",
+        "React"
+      ],
+      "salary": {
+        "min": 2000,
+        "max": 3950
+      },
+      "job-type": "part-time",
+      "mobility": "remote",
+      "location": {
+        "lat": 36.84562842199219,
+        "lng": 10.18811721644275
+      },
+      "company": "Meta",
+      "country": "Tunisia"
+    },
+    {
+      "id": 1691320237727,
+      "title": "BlockChain engineer",
+      "description": "job description",
+      "skills": [
+        "Solidity",
+        "React"
+      ],
+      "salary": {
+        "min": 4050,
+        "max": 50000
+      },
+      "job-type": "part-time",
+      "mobility": "remote",
+      "location": {
+        "lat": -26.23236217791782,
+        "lng": 139.69654658947402
+      },
+      "company": "SigmaPrime",
+      "country": "Australia"
+    },
+    {
+      "id": 1691339841688,
+      "title": "Front-end developer",
+      "description": "job description",
+      "skills": [
+        "React"
+      ],
+      "salary": {
+        "min": 0,
+        "max": 41400
+      },
+      "job-type": "full-time",
+      "mobility": "remote",
+      "location": {
+        "lat": 36.556130778374815,
+        "lng": 10.144153978029077
+      },
+      "company": "Amazon",
+      "country": "Tunisia"
+    },
+    {
+      "id": 1691361203208,
+      "title": "Data scientist",
+      "description": "job description",
+      "skills": [
+        "Python",
+        "Big Data"
+      ],
+      "salary": {
+        "min": 38000,
+        "max": 50000
+      },
+      "job-type": "part-time",
+      "mobility": "remote",
+      "location": {
+        "lat": 41.86743148310382,
+        "lng": 12.4798458244995
+      },
+      "company": "META",
+      "country": "Italy"
+    }
+  ]
+}

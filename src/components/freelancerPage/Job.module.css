@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0.2rem 0.5rem;
+  gap: 5px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-top: 3px solid rgb(0, 255, 94);
+  color: #e3e3e3;
+}
+.detailed {
+  gap: 30px;
+  width: 98%;
+  border: 3px solid rgb(0, 255, 94);
+  padding: 1.2rem;
+  cursor: default;
+}
+.selected {
+  background-color: #4a4e53;
+}
+
+.container:hover {
+  background-color: #4a4e53;
+}
+.detailed:hover {
+  background-color: inherit;
+}
+.title {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title h3 {
+  color: #bb9a9a;
+}
+
+.title p {
+  padding-left: 0.5rem;
+}
+
+.skills {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+}
+.skills ul {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 15px;
+}
+
+.skill {
+  background-color: #4a4e53;
+}
+.inSkillInput {
+  background-color: rgb(55, 160, 82);
+}
+.salary {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+.others {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

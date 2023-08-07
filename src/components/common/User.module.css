@@ -1,0 +1,51 @@
+.container {
+  position: fixed;
+  background-color: #151e29;
+  z-index: 999;
+  border-radius: 60px;
+  font-size: 0.4rem;
+  width: 15%;
+  height: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 5%;
+  right: -12%;
+}
+.container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.arrow {
+  font-size: 1.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userMode {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mode {
+  width: 85%;
+  height: 40%;
+  font-size: 0.5rem;
+  border-radius: 60px;
+  padding: 0 1px;
+  background-color: #f95959;
+  cursor: pointer;
+  border: 2px solid white;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+}
