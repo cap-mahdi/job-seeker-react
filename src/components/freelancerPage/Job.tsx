@@ -28,7 +28,6 @@ function Job({ job, details = false, skills: skillsInput = [] }: props) {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { color } = getColor(skills, user);
-
   function handleClick() {
     selectJob(job);
     if (!details) {
@@ -90,7 +89,7 @@ function Job({ job, details = false, skills: skillsInput = [] }: props) {
           <span> min Salary: {salary && salary.min}$</span>
           <Box sx={{ width: 150 }}>
             <Slider
-              min={Number(import.meta.env.VITE_MIN_SALARY)}
+              min={Number(0)}
               max={Number(import.meta.env.VITE_MAX_SALARY)}
               step={50}
               getAriaLabel={() => "Salary"}
