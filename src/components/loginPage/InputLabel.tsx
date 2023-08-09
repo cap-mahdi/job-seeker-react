@@ -5,7 +5,7 @@ interface props {
   id: string;
   value?: string;
   setValue?: React.Dispatch<React.SetStateAction<string>>;
-  rows?: int;
+  rows?: number;
   disabled?: boolean;
 }
 function InputLabel({
@@ -13,10 +13,17 @@ function InputLabel({
   type = "text",
   id,
   value,
-  setValue,
+  setValue = () => {},
   rows = 0,
   disabled = false,
 }: props) {
+  function handleChange(
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) {
+    setValue(e.target.value);
+  }
   return (
     <div className={styles.container}>
       <label htmlFor={id}>{label}:</label>
@@ -25,14 +32,14 @@ function InputLabel({
           type={type}
           id={id}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleChange}
           disabled={disabled}
         />
       ) : (
         <textarea
           id={id}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleChange}
           rows={rows}
           cols={50}
           disabled={disabled}

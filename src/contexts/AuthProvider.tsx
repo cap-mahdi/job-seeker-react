@@ -1,19 +1,41 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
-const AuthContext = createContext({});
-const initialState = {
+import { User } from "../Types";
+
+type Action = { type: string; payload?: { user: User } }; // Adjust payload type as needed
+
+interface State {
+  user: User | null;
+  isAuth: boolean;
+  isLoading: boolean;
+}
+interface AuthContextType {
+  user: User | null;
+  isAuth: boolean;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+const initialState: State = {
   user: null,
   isAuth: false,
   isLoading: true,
 };
 
 const URL = import.meta.env.VITE_FAKE_API + "/users";
-function reducer(state, action) {
+
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "LOGIN":
-      localStorage.setItem("user", JSON.stringify(action.payload.user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify(action.payload && action.payload.user)
+      );
       return {
         ...state,
-        user: action.payload.user,
+        user: action.payload ? action.payload.user : null,
         isAuth: true,
         isLoading: false,
       };
@@ -30,21 +52,22 @@ function reducer(state, action) {
         ...state,
         isLoading: true,
       };
-
     default:
       return state;
   }
 }
 
-interface props {
+interface AuthProviderProps {
   children: React.ReactNode;
 }
-function AuthProvider({ children }: props) {
+
+function AuthProvider({ children }: AuthProviderProps) {
   const [{ user, isAuth, isLoading }, dispatch] = useReducer(
     reducer,
     initialState
   );
-  async function login(email, password) {
+
+  async function login(email: string, password: string) {
     const res = await fetch(`${URL}?email=${email}&password=${password}`);
     const user = await res.json();
     if (user?.length) {
@@ -53,9 +76,11 @@ function AuthProvider({ children }: props) {
       throw new Error("Invalid email or password");
     }
   }
+
   async function logout() {
     dispatch({ type: "LOGOUT" });
   }
+
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
@@ -71,6 +96,7 @@ function AuthProvider({ children }: props) {
     </AuthContext.Provider>
   );
 }
+
 function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {

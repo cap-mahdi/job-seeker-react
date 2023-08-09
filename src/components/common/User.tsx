@@ -45,13 +45,13 @@ function User({ link, mode }: props) {
       }}
     >
       <div className={styles.arrow}>{isHover ? "➡️" : "⬅️"}</div>
-      <img src={`/assets/users/${user.image}`} alt="user" />
+      <img src={`/assets/users/${user && user.image}`} alt="user" />
       <div className={styles.userMode}>
         <div className={styles.info}>
           <h1>
-            {user.first_name} {user.last_name}
+            {user && user.first_name} {user && user.last_name}
           </h1>
-          <h3>{user.email}</h3>
+          <h3>{user && user.email}</h3>
         </div>
         <Link to={link} className={styles.mode}>
           MODE {mode.toUpperCase()}

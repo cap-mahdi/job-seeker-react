@@ -4,9 +4,9 @@ import BottomHome from "../components/homePage/BottomHome";
 import TopHome from "../components/homePage/TopHome";
 
 function HomePage() {
-  const featuresDiv = useRef(null);
+  const featuresDiv = useRef<HTMLDivElement>(null);
   const scrollToFeatures = () => {
-    if (!featuresDiv.current != null)
+    if (featuresDiv.current != null)
       featuresDiv.current.scrollIntoView({
         behavior: "smooth",
       });

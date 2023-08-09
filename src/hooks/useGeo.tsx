@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 interface Geo {
   lat: number;
-  lon: number;
+  lng: number;
 }
 
 function useGeo() {
-  const [geo, setGeo] = useState<Geo>(null);
-  const [error, setError] = useState<string>(null);
+  const [geo, setGeo] = useState<Geo | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(

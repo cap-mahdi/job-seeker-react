@@ -1,12 +1,13 @@
+import { User } from "../../Types";
 
 
-export function getColor(skills: string[], fakeUser): {
+export function getColor(skills: string[] , user:User | null): {
     percentage: number;
     color: string;
     } {
     let matchedSkills = 0;
   skills.forEach((skill) => {
-    if (fakeUser.skills.includes(skill)) matchedSkills++;
+    if (user && user.skills.includes(skill)) matchedSkills++;
   });
   const percentage = Math.ceil((matchedSkills / skills.length) * 100);
   const color =

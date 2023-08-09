@@ -1,41 +1,58 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Job } from "../Types";
 
-const JobContext = createContext(null);
+interface JobContextType {
+  jobs: Job[];
+  isLoading: boolean;
+  error: string;
+  selectedJob: Job | null;
+  hoveredJob: Job | null;
+  skills: string[] | null;
+  countries: string[] | null;
+  selectJob: (job: Job | null) => void;
+  hoverJob: (job: Job | null) => void;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchJobs: (filter: filter, controller?: AbortController) => Promise<void>;
+  fetchJob: (id: number, controller?: AbortController) => Promise<void>;
+  addJob: (job: Job) => Promise<void>;
+}
 
-interface props {
+const JobContext = createContext<JobContextType | null>(null);
+
+interface Props {
   children: React.ReactNode;
 }
 
 interface filter {
   skills?: string[];
-  salary?: number[2];
+  salary?: number[];
   "job-type"?: string[];
   mobility?: string[];
-  country?: string[];
+  country?: string;
 }
 
 const URL = import.meta.env.VITE_FAKE_API + "/jobAds";
 
-function JobProvider({ children }: props) {
-  const [jobs, setJobs] = useState([]);
+function JobProvider({ children }: Props) {
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [hoveredJob, setHoveredJob] = useState(null);
-  /*options*/
+  const [error, setError] = useState<string>("");
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const [hoveredJob, setHoveredJob] = useState<Job | null>(null);
   const [skills, setSkills] = useState<string[] | null>(null);
   const [countries, setCountries] = useState<string[] | null>(null);
-  /*url params*/
+
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
   function filterJobs(
-    data,
+    data: Job[],
     { skills, salary, "job-type": jobType, mobility, country }: filter
   ) {
-    const skillsToLowerCase = skills.map((skill) => skill.toLowerCase());
+    const skillsToLowerCase = !skills
+      ? []
+      : skills.map((skill) => skill.toLowerCase());
     const filteredJobs = data.filter((job) => {
       if (skillsToLowerCase.length > 0) {
         const jobSkills = job.skills.map((skill) => skill.toLowerCase());
@@ -45,16 +62,16 @@ function JobProvider({ children }: props) {
         if (!skillsMatch) return false;
       }
 
-      if (jobType.length > 0) {
+      if (jobType && jobType.length > 0) {
         const jobTypeMatch = jobType.some(
           (type) => job["job-type"].toLowerCase() === type.toLowerCase()
         );
         if (!jobTypeMatch) return false;
       }
 
-      if (mobility.length > 0) {
+      if (mobility && mobility.length > 0) {
         const mobilityMatch = mobility.some(
-          (type) => job.mobility.toLowerCase() === type.toLowerCase()
+          (type) => job && job.mobility.toLowerCase() === type.toLowerCase()
         );
         if (!mobilityMatch) return false;
       }
@@ -73,10 +90,11 @@ function JobProvider({ children }: props) {
 
     return filteredJobs;
   }
+
   async function fetchJobs(
     filter: filter,
     controller?: AbortController
-  ): Promise<() => void> {
+  ): Promise<void> {
     setIsLoading(true);
     try {
       const response = await fetch(URL, { signal: controller?.signal });
@@ -89,15 +107,19 @@ function JobProvider({ children }: props) {
       setJobs(filteredJobs);
       setIsLoading(false);
     } catch (error) {
-      if (error.name === "AbortError") {
+      if (error instanceof Error && error.name === "AbortError") {
         return;
       }
       console.error(error);
-      setError(error);
+      if (error instanceof Error) setError(error.message);
       setIsLoading(false);
     }
   }
-  async function fetchJob(id: number, controller?: AbortController) {
+
+  async function fetchJob(
+    id: number,
+    controller?: AbortController
+  ): Promise<void> {
     setIsLoading(true);
 
     try {
@@ -108,16 +130,16 @@ function JobProvider({ children }: props) {
       setSelectedJob(data);
       setIsLoading(false);
     } catch (error) {
-      if (error.name === "AbortError") {
+      if (error instanceof Error && error.name === "AbortError") {
         return;
       }
       console.error(error);
-      setError(error);
+      if (error instanceof Error) setError(error.message);
       setIsLoading(false);
     }
   }
 
-  async function addJob(job) {
+  async function addJob(job: Job): Promise<void> {
     setIsLoading(true);
     try {
       const response = await fetch(URL, {
@@ -134,10 +156,11 @@ function JobProvider({ children }: props) {
     }
   }
 
-  function selectJob(job) {
+  function selectJob(job: Job | null) {
     setSelectedJob(job);
   }
-  function hoverJob(job) {
+
+  function hoverJob(job: Job | null) {
     setHoveredJob(job);
   }
 
@@ -146,15 +169,15 @@ function JobProvider({ children }: props) {
       try {
         const response = await fetch(`${URL}`);
         const data = await response.json();
-        const skills = data.reduce((acc, job) => {
-          job.skills.forEach((skill) => {
+        const skills = data.reduce((acc: string[], job: Job) => {
+          job.skills.forEach((skill: string) => {
             if (!acc.includes(skill)) {
               acc.push(skill);
             }
           });
           return acc;
         }, []);
-        const countries = data.reduce((acc, job) => {
+        const countries = data.reduce((acc: string[], job: Job) => {
           if (!acc.includes(job.country)) {
             acc.push(job.country);
           }
@@ -170,6 +193,7 @@ function JobProvider({ children }: props) {
     }
     fetchSkills();
   }, []);
+
   useEffect(() => {
     if (id) {
       const controller = new AbortController();
@@ -204,7 +228,7 @@ function JobProvider({ children }: props) {
 function useJobs() {
   const context = useContext(JobContext);
 
-  if (context === undefined) {
+  if (context === null) {
     throw new Error("useJobs must be used within a JobProvider");
   }
   return context;

@@ -5,22 +5,15 @@ import { useJobs } from "../../contexts/JobContext";
 import { getColor } from "./getColor";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../contexts/AuthProvider";
+import { Job } from "../../Types";
 
 interface props {
-  job: {
-    id: number;
-    title: string;
-    description: string;
-    skills: string[];
-    "job-type": string;
-    country: string;
-    mobility: string;
-    salary: {
-      min: number;
-      max: number;
-    };
-  };
+  job: Job;
   marker?: boolean;
+}
+
+interface childProps {
+  children: React.ReactNode;
 }
 
 function CircleJob({
@@ -33,7 +26,7 @@ function CircleJob({
 
   const { percentage, color } = getColor(skills, user);
 
-  const Container: React.FC = ({ children }) =>
+  const Container: React.FC<childProps> = ({ children }) =>
     selectedJob?.id !== id && !marker ? (
       <CircleMarker
         center={[location.lat, location.lng]}

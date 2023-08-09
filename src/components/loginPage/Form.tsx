@@ -11,11 +11,12 @@ function Form() {
   const { login } = useAuth();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(email, password);
     try {
       await login(email, password);
       navigate("/mode");
-    } catch (err: Error) {
-      setError(err.message);
+    } catch (err) {
+      if (err instanceof Error) setError(err.message);
     }
   };
   return (

@@ -5,31 +5,37 @@ import { useJobs } from "../../contexts/JobContext";
 import { useSearchParams } from "react-router-dom";
 
 interface props {
-  options: { value: string; label: string }[];
+  options: option[];
   placeholder?: string;
-  setValue?: React.Dispatch<React.SetStateAction<string>>;
-  value?: { value: string; label: string };
+  setValue?: React.Dispatch<React.SetStateAction<string[]>>;
+  value?: option[];
 
   isDisabled?: boolean;
 }
-
-function Selection({
+interface option {
+  value: string;
+  label: string;
+}
+function SelectionMultiple({
   options,
   placeholder,
   setValue = () => {},
-  value = { value: "", label: "" },
+  value = [{ value: "", label: "" }],
   isDisabled,
 }: props) {
   const { skills, isLoading, setIsLoading } = useJobs();
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
-  function handleSelectChangeSingle(
-    e: SingleValue<{ value: string; label: string }>
-  ) {
+  function handleSelectChangeMultiple(e: SingleValue<option>) {
     if (!e) return;
     if (!id) setIsLoading(true);
-    setValue(e.value);
+
+    // if (e.length === options.length) {
+    //   setValue([]);
+    //   return;
+    // }
+    setValue((old) => [...old, e.value]);
   }
 
   return (
@@ -41,10 +47,10 @@ function Selection({
       // style={{
       //   width: `${8 * value.value.length + 100}px`,
       // }}
-      onChange={handleSelectChangeSingle}
+      onChange={handleSelectChangeMultiple}
       value={value}
     />
   );
 }
 
-export default Selection;
+export default SelectionMultiple;

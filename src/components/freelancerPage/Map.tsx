@@ -10,11 +10,12 @@ import { useEffect } from "react";
 import { useJobs } from "../../contexts/JobContext";
 import CircleJob from "./CircleJob";
 import { useSearchParams } from "react-router-dom";
+import { LatLngTuple } from "leaflet";
 // import { useNavigate } from "react-router";
 
 const ZOOM = 7;
 const ZOOM_TO_CURRENT_LOCATION = 10;
-const DEFAULT_POSITION = [51.505, -0.09];
+const DEFAULT_POSITION: LatLngTuple = [32.0853, 34.7818];
 function Map() {
   const { jobs, selectedJob } = useJobs();
   return (
@@ -51,6 +52,7 @@ function ChangeToSelectedJob() {
       );
     }
   }, [selectedJob, map]);
+  return null;
 }
 
 function ChnageMapToCurrentPosition() {
@@ -65,6 +67,7 @@ function ChnageMapToCurrentPosition() {
       map.flyTo([geo.lat, geo.lng], ZOOM_TO_CURRENT_LOCATION);
     }
   }, [geo, map]);
+  return null;
 }
 
 // function ClickingOnMap() {

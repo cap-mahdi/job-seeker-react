@@ -7,15 +7,17 @@ import { useEffect } from "react";
 import { useGeo } from "../../hooks/useGeo";
 import { useMap } from "react-leaflet";
 import { useMapEvents } from "react-leaflet";
+import { LatLngTuple } from "leaflet";
 
 interface Props {
   setPosition: (position: [number, number]) => void;
-  position: [number, number];
+  position: LatLngTuple;
 }
-const DEFAULT_POSITION = [51.505, -0.09];
 
+const DEFAULT_POSITION: LatLngTuple = [32.0853, 34.7818];
 const ZOOM = 7;
 const ZOOM_TO_CURRENT_LOCATION = 10;
+
 function Map({ setPosition, position }: Props) {
   return (
     <MapContainer
@@ -33,21 +35,26 @@ function Map({ setPosition, position }: Props) {
           The position of the marker is {position[0]}, {position[1]}
         </Popup>
       </Marker>
-      <ChnageMapToCurrentPosition setPosition={setPosition} />
+      <ChangeMapToCurrentPosition setPosition={setPosition} />
       <ClickingOnMap setPosition={setPosition} />
     </MapContainer>
   );
 }
 
-function ClickingOnMap({ setPosition }) {
+interface ChildProps {
+  setPosition: (position: [number, number]) => void;
+}
+
+function ClickingOnMap({ setPosition }: ChildProps) {
   useMapEvents({
     click: (e) => {
       setPosition([e.latlng.lat, e.latlng.lng]);
     },
   });
+  return null;
 }
 
-function ChnageMapToCurrentPosition({ setPosition }) {
+function ChangeMapToCurrentPosition({ setPosition }: ChildProps) {
   const map = useMap();
   /*get location*/
   const { geo } = useGeo();
@@ -57,6 +64,7 @@ function ChnageMapToCurrentPosition({ setPosition }) {
       setPosition([geo.lat, geo.lng]);
     }
   }, [geo, map, setPosition]);
+  return null;
 }
 
 export default Map;

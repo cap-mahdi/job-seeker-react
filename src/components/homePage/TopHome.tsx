@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import styles from "./TopHome.module.css";
 import ShakedButton from "./ShakedButton";
-import BackgroundImage from "./BackGroundImage";
+import BackgroundImage from "./BackgroundImage";
 import { useNavigate } from "react-router";
 
 const numberOfImages: number = 5;

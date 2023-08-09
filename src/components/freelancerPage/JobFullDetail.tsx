@@ -5,25 +5,10 @@ import styles from "./JobFullDetail.module.css";
 import Job from "./Job";
 import { useJobs } from "../../contexts/JobContext";
 import { useNavigate } from "react-router";
+import { Job as JobType } from "../../Types";
+
 interface props {
-  selectedJob: {
-    id: number;
-    title: string;
-    description: string;
-    skills: string[];
-    salary: {
-      min: number;
-      max: number;
-    };
-    "job-type": string;
-    mobility: string;
-    location: {
-      lng: number;
-      lat: number;
-    };
-    company: string;
-    country: string;
-  };
+  selectedJob: JobType | null;
   skills: string[];
 }
 

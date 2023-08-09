@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import styles from "./Filters.module.css";
 import Selection from "./Selection";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { useJobs } from "../../contexts/JobContext";
 import { useSearchParams } from "react-router-dom";
+import SelectionMultiple from "./SelectionMultiple";
+
 const jobTypeOptions = [
   { value: "Full-Time", label: "Full-Time" },
   { value: "Part-time", label: "Part-Time" },
@@ -18,27 +19,29 @@ const availabilityOptions = [
   { value: "Hybrid", label: "hybrid" },
 ];
 
-function convertArrayToOptions(array: string[]) {
+function convertArrayToOptions(array: string[] | null) {
+  if (!array) return [];
   return array.map((item) => ({ value: item, label: item }));
 }
+
 function convertStringToOptions(s: string) {
   return { value: s, label: s };
 }
 
-interface props {
+interface Props {
   skills: string[];
-  setSkills: (skills: string[]) => void | ((skills: string[]) => string[]);
+  setSkills: React.Dispatch<React.SetStateAction<string[]>>;
 }
-function Filters({ skills, setSkills }: props) {
+
+function Filters({ skills, setSkills }: Props) {
   const { fetchJobs, skills: allSkills, countries: allCountries } = useJobs();
-  const [country, setCountry] = useState("All");
-  const [jobType, setJobType] = useState([]);
-  const [mobility, setMobility] = useState([]);
+  const [country, setCountry] = useState<string>("All");
+  const [jobType, setJobType] = useState<string[]>([]);
+  const [mobility, setMobility] = useState<string[]>([]);
   const [salary, setSalary] = useState<number[]>([
     0,
     Number(import.meta.env.VITE_MAX_SALARY),
   ]);
-  /*options*/
 
   const [skillOptions, setSkillOptions] = useState<
     { value: string; label: string }[]
@@ -46,7 +49,7 @@ function Filters({ skills, setSkills }: props) {
   const [countriesOptions, setCountriesOptions] = useState<
     { value: string; label: string }[]
   >([]);
-  /*url params*/
+
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
@@ -55,7 +58,7 @@ function Filters({ skills, setSkills }: props) {
       setCountriesOptions(convertArrayToOptions(allCountries));
       setSkillOptions(convertArrayToOptions(allSkills));
     }
-  }, [allSkills, setSkillOptions]);
+  }, [allSkills]);
 
   useEffect(() => {
     if (id) {
@@ -79,7 +82,7 @@ function Filters({ skills, setSkills }: props) {
     <div className={styles.container}>
       <h2>...Filters...</h2>
       <div className={styles.filters}>
-        <Selection
+        <SelectionMultiple
           options={skillOptions}
           placeholder="search for skill ..."
           setValue={setSkills}
@@ -89,16 +92,15 @@ function Filters({ skills, setSkills }: props) {
           options={countriesOptions}
           placeholder="choose country ..."
           setValue={setCountry}
-          isMulti={false}
           value={convertStringToOptions(country)}
         />
-        <Selection
+        <SelectionMultiple
           options={jobTypeOptions}
           placeholder="job-type"
           setValue={setJobType}
           value={convertArrayToOptions(jobType)}
         />
-        <Selection
+        <SelectionMultiple
           options={availabilityOptions}
           placeholder="onsite-remote"
           setValue={setMobility}
@@ -113,7 +115,7 @@ function Filters({ skills, setSkills }: props) {
               step={50}
               getAriaLabel={() => "Salary"}
               value={salary}
-              onChange={(e, newValue) => setSalary(newValue)}
+              onChange={(_, newValue) => setSalary(newValue as number[])}
               valueLabelDisplay="auto"
               getAriaValueText={(value) => `${value}$`}
             />

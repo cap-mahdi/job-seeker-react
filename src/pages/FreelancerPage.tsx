@@ -6,7 +6,7 @@ import Slogan from "../components/common/Slogan";
 import { useState } from "react";
 import styles from "./FreelancerPage.module.css";
 function FreelancerPage() {
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState<string[]>([]);
   return (
     <div className={styles.container}>
       <Slogan />

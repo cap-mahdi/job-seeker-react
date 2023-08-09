@@ -5,25 +5,9 @@ import { useJobs } from "../../contexts/JobContext";
 import { getColor } from "./getColor";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../contexts/AuthProvider";
+import { Job as JobType } from "../../Types";
 interface props {
-  job: {
-    id: number;
-    title: string;
-    description: string;
-    skills: string[];
-    salary: {
-      min: number;
-      max: number;
-    };
-    "job-type": string;
-    mobility: string;
-    location: {
-      lng: number;
-      lat: number;
-    };
-    company: string;
-    country: string;
-  };
+  job: JobType | null;
   details?: boolean;
   skills?: string[];
 }
@@ -34,12 +18,12 @@ function Job({ job, details = false, skills: skillsInput = [] }: props) {
     title,
     description,
     company,
-    skills,
+    skills = [],
     salary,
     "job-type": jobType,
     mobility,
     country,
-  } = job;
+  } = job || {};
   const { selectedJob, selectJob, hoverJob, setIsLoading } = useJobs();
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -52,6 +36,15 @@ function Job({ job, details = false, skills: skillsInput = [] }: props) {
       navigate(`/jobs?id=${id}`);
     }
   }
+  function handleMouseEnter() {
+    if (job) {
+      hoverJob(job);
+    }
+  }
+
+  function handleMouseLeave() {
+    hoverJob(null);
+  }
 
   return (
     <li
@@ -59,8 +52,8 @@ function Job({ job, details = false, skills: skillsInput = [] }: props) {
         !details && selectedJob?.id == id ? styles.selected : ""
       } ${details && styles.detailed}`}
       onClick={handleClick}
-      onMouseEnter={() => hoverJob(job)}
-      onMouseLeave={() => hoverJob(null)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       style={{ borderColor: color }}
     >
       <div className={styles.title}>
@@ -76,38 +69,39 @@ function Job({ job, details = false, skills: skillsInput = [] }: props) {
       <div className={styles.skills}>
         <h4>Skills: </h4>
         <ul>
-          {skills.map((skill) => {
-            const inSkillsInput = skillsInput.includes(skill);
-            return (
-              <li
-                key={skill}
-                className={`${styles.skill} ${
-                  inSkillsInput && styles.inSkillInput
-                }`}
-              >
-                {skill}
-              </li>
-            );
-          })}
+          {skills &&
+            skills.map((skill: string) => {
+              const inSkillsInput = skillsInput.includes(skill);
+              return (
+                <li
+                  key={skill}
+                  className={`${styles.skill} ${
+                    inSkillsInput && styles.inSkillInput
+                  }`}
+                >
+                  {skill}
+                </li>
+              );
+            })}
         </ul>
       </div>
       <div className={styles.details}>
         <div className={styles.salary}>
-          <span> min Salary: {salary.min}$</span>
+          <span> min Salary: {salary && salary.min}$</span>
           <Box sx={{ width: 150 }}>
             <Slider
               min={Number(import.meta.env.VITE_MIN_SALARY)}
               max={Number(import.meta.env.VITE_MAX_SALARY)}
               step={50}
               getAriaLabel={() => "Salary"}
-              value={[salary.min, salary.max]}
+              value={salary && [salary.min, salary.max]}
               valueLabelDisplay="auto"
               getAriaValueText={(value) => `${value}$`}
               size="small"
               disabled
             />
           </Box>
-          <span> max Salary: {salary.max}$</span>
+          <span> max Salary: {salary && salary.max}$</span>
         </div>
         <div className={styles.others}>
           <p>Job Type: {jobType}</p>

@@ -36,7 +36,7 @@ interface Props {
   title: string;
   slogan: string;
   backgroundColor: string;
-  color: string;
+  color?: string;
   link: string;
 }
 function Choice({

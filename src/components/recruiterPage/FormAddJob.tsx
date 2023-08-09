@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import SelectOptions from "../common/SelectOptions";
 import { useState, useEffect } from "react";
 import { useJobs } from "../../contexts/JobContext";
+import { LatLngTuple } from "leaflet";
 
 const jobTypeOptions = [
   { value: "full-time", label: "FullTime" },
@@ -21,21 +22,24 @@ const mobilityOptions = [
 ];
 
 interface Props {
-  position: number[];
+  position: LatLngTuple;
 }
 
 function FormAddJob({ position }: Props) {
   const { skills: allSkills, addJob, isLoading, setIsLoading } = useJobs();
-  const [skillOptions, setSkillOptions] = useState([]);
+  const [skillOptions, setSkillOptions] = useState<string[]>([]);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [company, setCompany] = useState("");
-  const [country, setCountry] = useState("");
-  const [skills, setSkills] = useState([]);
-  const [jobType, setJobType] = useState("full-time");
-  const [mobility, setMobility] = useState("remote");
-  const [salary, setSalary] = useState([0, import.meta.env.VITE_MAX_SALARY]);
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [company, setCompany] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+  const [skills, setSkills] = useState<string[]>([]);
+  const [jobType, setJobType] = useState<string>("full-time");
+  const [mobility, setMobility] = useState<string>("remote");
+  const [salary, setSalary] = useState<number[]>([
+    0,
+    import.meta.env.VITE_MAX_SALARY,
+  ]);
 
   useEffect(() => {
     if (allSkills) {
@@ -47,9 +51,7 @@ function FormAddJob({ position }: Props) {
     setIsLoading(false);
   }, [setIsLoading]);
 
-  function handleClick(e) {
-    e.preventDefault();
-
+  function handleClick() {
     if (
       !title ||
       !description ||
@@ -140,8 +142,8 @@ function FormAddJob({ position }: Props) {
               value={salary}
               valueLabelDisplay="auto"
               getAriaValueText={(value) => `${value}$`}
-              onChange={(event, newValue) => {
-                setSalary(newValue);
+              onChange={(_, newValue: number | number[]) => {
+                setSalary(newValue as number[]);
               }}
               disabled={isLoading}
             />
@@ -157,7 +159,7 @@ function FormAddJob({ position }: Props) {
             options={skillOptions}
             getOptionLabel={(option) => option}
             value={skills}
-            onChange={(event, newValue) => {
+            onChange={(_, newValue: string[]) => {
               setSkills(newValue);
             }}
             freeSolo

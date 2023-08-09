@@ -12,7 +12,7 @@ interface Props {
 
 const AppFeature: React.FC<Props> = ({ feature, index }) => {
   return (
-    <Reveal left={index % 2}>
+    <Reveal left={index % 2 == 1}>
       <li className={styles.feature}>
         {index % 2 == 0 && (
           <img
