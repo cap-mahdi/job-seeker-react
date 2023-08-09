@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 import BottomHome from "../components/homePage/BottomHome";
 import TopHome from "../components/homePage/TopHome";
@@ -12,12 +12,12 @@ function HomePage() {
       });
   };
 
-  // useEffect(() => {
-  //   alert(
-  //     "This project is a learning project\nIt misses a lot of features\nIt is not meant to be used in production\nIt uses a fake API"
-  //   );
-  //   alert("see list of users you can connect with in the About Us page");
-  // }, []);
+  useEffect(() => {
+    alert(
+      "This project is a learning project\nIt misses a lot of features\nIt is not meant to be used in production\nIt uses a fake API"
+    );
+    alert("see list of users you can connect with in the About Us page");
+  }, []);
 
   return (
     <>
