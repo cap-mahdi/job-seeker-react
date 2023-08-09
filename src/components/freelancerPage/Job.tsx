@@ -44,8 +44,6 @@ function Job({ job, details = false, skills: skillsInput = [] }: props) {
   function handleMouseLeave() {
     hoverJob(null);
   }
-  console.log(salary);
-  console.log(import.meta.env.VITE_MAX_SALARY);
   return (
     <li
       className={`${styles.container} ${
